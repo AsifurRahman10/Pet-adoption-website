@@ -48,9 +48,9 @@ The following APIs are available in Peddy:
 
 ### 2. **Banner Section**
 
-- Design the banner section as per Figma design.
-- Include a "View More" button that, when clicked, scrolls down to the “Adopt Your Best Friend” section.
-- Ensure the banner is fully responsive.
+- Design the banner section as per Figma design.✅
+- Include a "View More" button that, when clicked, scrolls down to the “Adopt Your Best Friend” section.✅
+- Ensure the banner is fully responsive.✅
 
 ### 3. **Adopt Your Best Friend Section**
 
