@@ -1,8 +1,11 @@
 // category data getting from API
 const getCategoryData = () => {
-    fetch('https://openapi.programming-hero.com/api/peddy/categories')
+    fetch(`https://openapi.programming-hero.com/api/peddy/categories`)
         .then(res => res.json())
-        .then(data => displayCategory(data.categories))
+        .then(data => {
+            displayCategory(data.categories)
+            // console.log(data);
+        })
 }
 
 // fetch all pets
@@ -11,10 +14,20 @@ const getAllPetData = () => {
         .then(res => res.json())
         .then(data => displayPets(data.pets))
 }
+// show category wise pets
+const showCategoryWisePets = (petName) => {
+
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${petName}`)
+        .then(res => res.json())
+        .then(data => displayPets(data.data))
+}
 
 // display pets
 
 const displayPets = (pets) => {
+    if (pets == '') {
+
+    }
     pets.forEach(pet => {
         const petCardContainer = document.getElementById('pet-card-container');
         const div = document.createElement('div');
@@ -86,15 +99,20 @@ const displayCategory = (categories) => {
             <p class="text-2xl font-bold">${categoryD.category}</p>
            
         `
+        btn.onclick = function () {
+            showCategoryPets(categoryD.category);
+        };
         categoryContainer.append(btn);
     });
 }
 
+const showCategoryPets = (petCategoryDisplay) => {
+    const petCardContainer = document.getElementById('pet-card-container');
+    petCardContainer.innerHTML = "";
+    showCategoryWisePets(petCategoryDisplay)
+}
 
-
-
-
-
+// no pets found
 
 // call category data
 getCategoryData();
