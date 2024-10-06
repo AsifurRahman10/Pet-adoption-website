@@ -42,9 +42,9 @@ The following APIs are available in Peddy:
 
 ### 1. **Navbar**
 
-- Implement the navbar as per the Figma design.
-- Ensure it is responsive across Desktop, Tablet, and Mobile devices.
-- The navbar should collapse into a mobile menu on smaller screens.
+- Implement the navbar as per the Figma design.✅
+- Ensure it is responsive across Desktop, Tablet, and Mobile devices. ✅
+- The navbar should collapse into a mobile menu on smaller screens.✅
 
 ### 2. **Banner Section**
 
