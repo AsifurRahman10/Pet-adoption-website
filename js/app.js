@@ -19,17 +19,42 @@ const showCategoryWisePets = (petName) => {
 
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${petName}`)
         .then(res => res.json())
-        .then(data => displayPets(data.data))
+        .then(data => {
+            if (data.data.length > 0 && Array.isArray(data.data)) {
+                displayPets(data.data);
+            }
+            else {
+                noPetFound();
+            }
+
+        })
+}
+
+// display not category pet available
+const noPetFound = () => {
+    const petCardContainer = document.getElementById('pet-card-container');
+    petCardContainer.classList.remove('lg:grid-cols-3');
+    // petCardContainer.innerHTML = ""
+    const div = document.createElement('div');
+    div.classList = 'font-[inter] flex flex-col gap-y-4 justify-center items-center px-5 py-20 bg-[#f8f8f8] rounded-3xl text-center';
+    div.innerHTML = `
+     <img src="./images/error.webp" alt="" />
+            <h2 class="text-4xl font-bold">No Information Available</h2>
+            <p class="text-base text-[#5a5a5a]">
+              Sorry, No pet found in this category.
+            </p>
+    `
+    petCardContainer.append(div);
+
+
 }
 
 // display pets
 
 const displayPets = (pets) => {
-    if (pets == '') {
-
-    }
     pets.forEach(pet => {
         const petCardContainer = document.getElementById('pet-card-container');
+        petCardContainer.classList.add('lg:grid-cols-3');
         const div = document.createElement('div');
         div.classList = "card border-2 p-5 space-y-4";
         div.innerHTML = `
