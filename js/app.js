@@ -5,13 +5,82 @@ const getCategoryData = () => {
         .then(data => displayCategory(data.categories))
 }
 
+// fetch all pets
+const getAllPetData = () => {
+    fetch('https://openapi.programming-hero.com/api/peddy/pets')
+        .then(res => res.json())
+        .then(data => displayPets(data.pets))
+}
+
+// display pets
+
+const displayPets = (pets) => {
+    pets.forEach(pet => {
+        const petCardContainer = document.getElementById('pet-card-container');
+        const div = document.createElement('div');
+        div.classList = "card border-2 p-5 space-y-4";
+        div.innerHTML = `
+        <figure>
+              <img
+                src="${pet.image}"
+                alt="Shoes" class= "w-full"
+              />
+            </figure>
+            <div class="">
+              <h2 class="font-[inter] text-xl font-bold">${pet?.pet_name ? pet.pet_name : "N/A"}</h2>
+              <p class="flex items-center gap-2">
+                <img src="./images/bread.png" alt="" />
+                <span class="text-lg text-[#5a5a5a] font-[lato]"
+                  >Breed: ${pet?.breed ? pet.breed : "N/A"}</span
+                >
+              </p>
+              <p class="flex items-center gap-2">
+                <img src="./images/birth.png" alt="" />
+                <span class="text-lg text-[#5a5a5a] font-[lato]"
+                  >Birth: ${pet?.date_of_birth ? new Date(pet.date_of_birth).getFullYear() : "N/A"}</span
+                >
+              </p>
+              <p class="flex items-center gap-2">
+                <img src="./images/gender.png" alt="" />
+                <span class="text-lg text-[#5a5a5a] font-[lato]"
+                  >Gender: ${pet?.gender ? pet.gender : "N/A"}</span
+                >
+              </p>
+              <p class="flex items-center gap-2">
+                <img src="./images/price.png" alt="" />
+                <span class="text-lg text-[#5a5a5a] font-[lato]"
+                  >Price : ${pet?.price ? pet.price : "N/A"}</span
+                >
+              </p>
+              <div class="flex justify-between mt-5 font-[lato]">
+                <button class="btn bg-white px-8 border-[#dbebec]">
+                  <i class="fa-regular fa-thumbs-up text-lg"></i>
+                </button>
+                <button
+                  class="btn border-[#dbebec] px-8 bg-white font-bold text-xl text-[#0E7A81]"
+                >
+                  Adopt
+                </button>
+                <button
+                  class="btn bg-white px-8 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
+                >
+                  Details
+                </button>
+              </div>
+            </div>
+        
+        `
+        petCardContainer.append(div);
+    });
+}
+
 // display category btn
 
 const displayCategory = (categories) => {
     categories.forEach(categoryD => {
         const categoryContainer = document.getElementById('category-container')
         const btn = document.createElement('button');
-        btn.classList = 'btn flex items-center gap-4 border-2 rounded-[16px] h-24 justify-center';
+        btn.classList = 'btn flex items-center gap-4 border-2 rounded-[16px] h-24 justify-center font-[inter]';
         btn.innerHTML = `
              <img src="${categoryD.category_icon}" alt="" />
             <p class="text-2xl font-bold">${categoryD.category}</p>
@@ -29,3 +98,6 @@ const displayCategory = (categories) => {
 
 // call category data
 getCategoryData();
+
+// get all pet
+getAllPetData();
