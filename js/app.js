@@ -79,6 +79,7 @@ const displayPets = (pets) => {
   `
   petCardContainer.append(spinner);
   setTimeout(() => {
+    petCardContainer.classList.remove('text-center');
     petCardContainer.classList.add('lg:grid-cols-3')
     petCardContainer.classList.add('md:grid-cols-2')
     document.getElementById('spinnerId').classList.add('hidden')
