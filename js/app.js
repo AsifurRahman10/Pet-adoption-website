@@ -22,6 +22,7 @@ const showCategoryWisePets = (petName) => {
     .then(data => {
       if (data.data.length > 0 && Array.isArray(data.data)) {
         displayPets(data.data);
+
       }
       else {
         noPetFound();
@@ -232,19 +233,29 @@ const displayCategory = (categories) => {
     const categoryContainer = document.getElementById('category-container')
     const btn = document.createElement('button');
     btn.classList = 'btn flex items-center gap-4 border-2 h-24 rounded-[16px] justify-center font-[inter]';
+    btn.id = 'category-btn'
     btn.innerHTML = `
     <img src = "${categoryD.category_icon}" alt = "" />
       <p class="text-2xl font-bold">${categoryD.category}</p>
 
   `
     btn.onclick = function () {
-      showCategoryPets(categoryD.category);
+      showCategoryPets(categoryD.category, btn);
     };
     categoryContainer.append(btn);
   });
 }
 
-const showCategoryPets = (petCategoryDisplay) => {
+const showCategoryPets = (petCategoryDisplay, clickedBtn) => {
+  console.log(clickedBtn);
+  const getAllButtons = document.querySelectorAll('#category-container button');
+  getAllButtons.forEach(btn => {
+    btn.classList.remove("rounded-[120px]", "bg-[#e7f2f2]");
+    btn.classList.add('rounded-[16px]');
+  });
+  clickedBtn.classList.remove('rounded-[16px]');
+  clickedBtn.classList.add("rounded-[120px]", "bg-[#e7f2f2]");
+
   const petCardContainer = document.getElementById('pet-card-container');
   petCardContainer.innerHTML = "";
   showCategoryWisePets(petCategoryDisplay)

@@ -92,7 +92,7 @@ The following APIs are available in Peddy:
 
 ### 1. **Loading Spinner**
 
-- Display a loading spinner for at least 2 seconds when fetching data from the API.
+- Display a loading spinner for at least 2 seconds when fetching data from the API.✅
 
 ### 2. **Sort by Price**
 
