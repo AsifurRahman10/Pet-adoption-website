@@ -54,9 +54,11 @@ const noPetFound = () => {
 
 const displayPets = (pets) => {
   const petCardContainer = document.getElementById('pet-card-container');
+  petCardContainer.classList.remove('lg:grid-cols-3')
+  petCardContainer.classList.remove('md:grid-cols-2')
+  petCardContainer.classList.add('text-center');
   petCardContainer.innerHTML = "";
-  petCardContainer.classList.remove('lg:grid-cols-3');
-  petCardContainer.classList.remove('md:grid-cols-2');
+
   const spinner = document.createElement('div');
   spinner.id = id = "spinnerId";
   spinner.innerHTML = `
@@ -64,6 +66,8 @@ const displayPets = (pets) => {
   `
   petCardContainer.append(spinner);
   setTimeout(() => {
+    petCardContainer.classList.add('lg:grid-cols-3')
+    petCardContainer.classList.add('md:grid-cols-2')
     document.getElementById('spinnerId').classList.add('hidden')
     pets.forEach(pet => {
       petCardContainer.classList.add('lg:grid-cols-3');
