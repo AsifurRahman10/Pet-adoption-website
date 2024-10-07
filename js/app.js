@@ -34,9 +34,10 @@ const showCategoryWisePets = (petName) => {
 const noPetFound = () => {
   const petCardContainer = document.getElementById('pet-card-container');
   petCardContainer.classList.remove('lg:grid-cols-3');
+  petCardContainer.classList.remove('md:grid-cols-2');
   // petCardContainer.innerHTML = ""
   const div = document.createElement('div');
-  div.classList = 'font-[inter] flex flex-col gap-y-4 justify-center items-center px-5 py-20 bg-[#f8f8f8] rounded-3xl text-center';
+  div.classList = 'font-[inter] flex flex-col gap-y-4 justify-center items-center w-full px-5 py-20 bg-[#f8f8f8] rounded-3xl text-center';
   div.innerHTML = `
      <img src="./images/error.webp" alt="" />
             <h2 class="text-4xl font-bold">No Information Available</h2>
@@ -52,65 +53,78 @@ const noPetFound = () => {
 // display pets
 
 const displayPets = (pets) => {
-  pets.forEach(pet => {
-    const petCardContainer = document.getElementById('pet-card-container');
-    petCardContainer.classList.add('lg:grid-cols-3');
-    const div = document.createElement('div');
-    div.classList = "card border-2 p-5 space-y-4";
-    div.innerHTML = `
-        <figure>
-              <img
-                src="${pet.image}"
-                alt="Shoes" class= "w-full"
-              />
-            </figure>
-            <div class="">
-              <h2 class="font-[inter] text-xl font-bold">${pet?.pet_name ? pet.pet_name : "N/A"}</h2>
-              <p class="flex items-center gap-2">
-                <img src="./images/bread.png" alt="" />
-                <span class="text-lg text-[#5a5a5a] font-[lato]"
-                  >Breed: ${pet?.breed ? pet.breed : "N/A"}</span
-                >
-              </p>
-              <p class="flex items-center gap-2">
-                <img src="./images/birth.png" alt="" />
-                <span class="text-lg text-[#5a5a5a] font-[lato]"
-                  >Birth: ${pet?.date_of_birth ? new Date(pet.date_of_birth).getFullYear() : "N/A"}</span
-                >
-              </p>
-              <p class="flex items-center gap-2">
-                <img src="./images/gender.png" alt="" />
-                <span class="text-lg text-[#5a5a5a] font-[lato]"
-                  >Gender: ${pet?.gender ? pet.gender : "N/A"}</span
-                >
-              </p>
-              <p class="flex items-center gap-2 border-b-2 pb-2">
-                <img src="./images/price.png" alt="" />
-                <span class="text-lg text-[#5a5a5a] font-[lato]"
-                  >Price : ${pet?.price ? pet.price : "N/A"}</span
-                >
-              </p>
-
-              <div class="flex justify-between mt-5 font-[lato]">
-                <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-6 border-[#dbebec]">
-                  <i class="fa-regular fa-thumbs-up text-lg"></i>
-                </button>
-                <button
-                  class="btn border-[#dbebec] lg:px-4 bg-white font-bold text-xl text-[#0E7A81]"
-                >
-                  Adopt
-                </button>
-                <button onclick=showModalBtn(${pet.petId})
-                  class="btn bg-white lg:px-4 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
-                >
-                  Details
-                </button>
+  const petCardContainer = document.getElementById('pet-card-container');
+  petCardContainer.innerHTML = "";
+  petCardContainer.classList.remove('lg:grid-cols-3');
+  petCardContainer.classList.remove('md:grid-cols-2');
+  const spinner = document.createElement('div');
+  spinner.id = id = "spinnerId";
+  spinner.innerHTML = `
+   <span class="loading loading-bars loading-xs"></span>
+  `
+  petCardContainer.append(spinner);
+  setTimeout(() => {
+    document.getElementById('spinnerId').classList.add('hidden')
+    pets.forEach(pet => {
+      petCardContainer.classList.add('lg:grid-cols-3');
+      const div = document.createElement('div');
+      div.classList = "card border-2 p-5 space-y-4";
+      div.innerHTML = `
+          <figure>
+                <img
+                  src="${pet.image}"
+                  alt="Shoes" class= "w-full"
+                />
+              </figure>
+              <div class="">
+                <h2 class="font-[inter] text-xl font-bold">${pet?.pet_name ? pet.pet_name : "N/A"}</h2>
+                <p class="flex items-center gap-2">
+                  <img src="./images/bread.png" alt="" />
+                  <span class="text-lg text-[#5a5a5a] font-[lato]"
+                    >Breed: ${pet?.breed ? pet.breed : "N/A"}</span
+                  >
+                </p>
+                <p class="flex items-center gap-2">
+                  <img src="./images/birth.png" alt="" />
+                  <span class="text-lg text-[#5a5a5a] font-[lato]"
+                    >Birth: ${pet?.date_of_birth ? new Date(pet.date_of_birth).getFullYear() : "N/A"}</span
+                  >
+                </p>
+                <p class="flex items-center gap-2">
+                  <img src="./images/gender.png" alt="" />
+                  <span class="text-lg text-[#5a5a5a] font-[lato]"
+                    >Gender: ${pet?.gender ? pet.gender : "N/A"}</span
+                  >
+                </p>
+                <p class="flex items-center gap-2 border-b-2 pb-2">
+                  <img src="./images/price.png" alt="" />
+                  <span class="text-lg text-[#5a5a5a] font-[lato]"
+                    >Price : ${pet?.price ? pet.price : "N/A"}</span
+                  >
+                </p>
+  
+                <div class="flex justify-between mt-5 font-[lato]">
+                  <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-6 border-[#dbebec]">
+                    <i class="fa-regular fa-thumbs-up text-lg"></i>
+                  </button>
+                  <button
+                    class="btn border-[#dbebec] lg:px-4 bg-white font-bold text-xl text-[#0E7A81]"
+                  >
+                    Adopt
+                  </button>
+                  <button onclick=showModalBtn(${pet.petId})
+                    class="btn bg-white lg:px-4 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
+                  >
+                    Details
+                  </button>
+                </div>
               </div>
-            </div>
-        
-        `
-    petCardContainer.append(div);
-  });
+          
+          `
+      petCardContainer.append(div);
+    });
+  }, 2000);
+
 }
 
 

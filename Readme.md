@@ -80,13 +80,13 @@ The following APIs are available in Peddy:
 
 ### 5. **Footer**
 
-- Implement the footer as per the Figma design.
-- Ensure it is responsive.
+- Implement the footer as per the Figma design.✅
+- Ensure it is responsive.✅
 
 ### 6. **Responsive Design**
 
-- The entire platform must be responsive and functional on Desktop, Tablet, and Mobile devices.
-- Use Tailwind CSS breakpoints for responsiveness.
+- The entire platform must be responsive and functional on Desktop, Tablet, and Mobile devices.✅
+- Use Tailwind CSS breakpoints for responsiveness.✅
 
 ## Challenges
 
