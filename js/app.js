@@ -92,16 +92,16 @@ const displayPets = (pets) => {
               </p>
 
               <div class="flex justify-between mt-5 font-[lato]">
-                <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-8 border-[#dbebec]">
+                <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-6 border-[#dbebec]">
                   <i class="fa-regular fa-thumbs-up text-lg"></i>
                 </button>
                 <button
-                  class="btn border-[#dbebec] px-8 bg-white font-bold text-xl text-[#0E7A81]"
+                  class="btn border-[#dbebec] lg:px-4 bg-white font-bold text-xl text-[#0E7A81]"
                 >
                   Adopt
                 </button>
                 <button onclick=showModalBtn(${pet.petId})
-                  class="btn bg-white px-8 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
+                  class="btn bg-white lg:px-4 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
                 >
                   Details
                 </button>
@@ -141,7 +141,7 @@ const showModal = (petDetails) => {
               <img class ="w-full object-cover mb-4 lg:h-[600px] rounded-lg" src="${petDetails.image ? petDetails.image : 'N/A'}" alt="" />
               <h2 class="font-bold text-2xl mb-4">${petDetails.pet_name ? petDetails.pet_name : 'N/A'}</h2>
               <div class="grid grid-cols-2">
-                <div class="flex items-center gap-2">
+                <div class="flex items-start lg:items-center gap-2">
                   <img  src="./images/bread.png" alt="" />
                   <p class="text-lg text-[#5a5a5a] font-[lato]">
                     Breed: ${petDetails.breed ? petDetails.breed : 'N/A'}
@@ -165,7 +165,7 @@ const showModal = (petDetails) => {
                     Price: ${petDetails.price ? petDetails.price : 'N/A'}
                   </p>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-start lg:items-center gap-2">
                   <img src="./images/vacine.png" alt="" />
                   <p class="text-lg text-[#5a5a5a] font-[lato]">
                     Vaccinated status: ${petDetails.vaccinated_status ? petDetails.vaccinated_status : 'N/A'}
