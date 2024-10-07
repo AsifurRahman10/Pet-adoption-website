@@ -112,7 +112,7 @@ const displayPets = (pets) => {
                   <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-6 border-[#dbebec]">
                     <i class="fa-regular fa-thumbs-up text-lg"></i>
                   </button>
-                  <button
+                  <button onclick = "adpot('adpot${pet.petId}')" id ="adpot${pet.petId}"
                     class="btn border-[#dbebec] lg:px-4 bg-white font-bold text-xl text-[#0E7A81]"
                   >
                     Adopt
@@ -129,6 +129,32 @@ const displayPets = (pets) => {
       petCardContainer.append(div);
     });
   }, 2000);
+
+}
+
+// adpot btn
+const adpot = (id) => {
+  const countDisplay = document.getElementById('countdown-value');
+  countDisplay.innerText = '3';
+  let count = 3;
+  const countdown = setInterval(() => {
+    if (count > 1) {
+      countDisplay.innerText = count;
+      count--;
+    }
+    else {
+      clearInterval(countdown);
+      countDisplay.innerText = '1';
+    }
+  }, 1000);
+
+  const modal2 = document.getElementById('my_modal_2');
+  modal2.showModal();
+  setTimeout(() => {
+    modal2.close();
+    document.getElementById(id).innerText = 'Adopted'
+    document.getElementById(id).disabled = true;
+  }, 3000);
 
 }
 

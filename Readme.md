@@ -98,7 +98,7 @@ The following APIs are available in Peddy:
 
 - Implement sorting functionality for pets. When the "Sort by Price" button is clicked, sort pets in descending order based on price . sorting on active category is recommended but if you can sort all the data you will get full mark for this requirement.
 
-### 3. **Adopt Button Behavior**
+### 3. **Adopt Button Behavior**✅
 
 - Implement an adoption process. When the "Adopt" button is clicked, show a countdown (3, 2, 1) and then change the button text to "Adopted."
 
