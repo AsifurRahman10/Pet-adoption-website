@@ -84,12 +84,13 @@ const displayPets = (pets) => {
                   >Gender: ${pet?.gender ? pet.gender : "N/A"}</span
                 >
               </p>
-              <p class="flex items-center gap-2">
+              <p class="flex items-center gap-2 border-b-2 pb-2">
                 <img src="./images/price.png" alt="" />
                 <span class="text-lg text-[#5a5a5a] font-[lato]"
                   >Price : ${pet?.price ? pet.price : "N/A"}</span
                 >
               </p>
+
               <div class="flex justify-between mt-5 font-[lato]">
                 <button onclick=likeBtn(${pet.petId}) class="btn bg-white px-8 border-[#dbebec]">
                   <i class="fa-regular fa-thumbs-up text-lg"></i>
@@ -99,7 +100,7 @@ const displayPets = (pets) => {
                 >
                   Adopt
                 </button>
-                <button
+                <button onclick=showModalBtn(${pet.petId})
                   class="btn bg-white px-8 border-[#dbebec] font-bold text-xl text-[#0E7A81]"
                 >
                   Details
@@ -112,11 +113,88 @@ const displayPets = (pets) => {
   });
 }
 
+
 // like btn
 const likeBtn = (petId) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
     .then(res => res.json())
-    .then(data => likeImageDisplay(data.petData))
+    .then(data => {
+      likeImageDisplay(data.petData);
+    })
+}
+// show modal and like btn
+
+const showModalBtn = (petId) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+    .then(res => res.json())
+    .then(data => {
+      showModal(data.petData);
+    })
+}
+
+// show Modal 
+const showModal = (petDetails) => {
+  console.log(petDetails);
+  const ModalInfo = document.getElementById('modal-info');
+  console.log(petDetails);
+  ModalInfo.innerHTML = `
+              <img class ="w-full object-cover mb-4 lg:h-[600px] rounded-lg" src="${petDetails.image ? petDetails.image : 'N/A'}" alt="" />
+              <h2 class="font-bold text-2xl mb-4">${petDetails.pet_name ? petDetails.pet_name : 'N/A'}</h2>
+              <div class="grid grid-cols-2">
+                <div class="flex items-center gap-2">
+                  <img  src="./images/bread.png" alt="" />
+                  <p class="text-lg text-[#5a5a5a] font-[lato]">
+                    Breed: ${petDetails.breed ? petDetails.breed : 'N/A'}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/birth.png" alt="" />
+                  <p class="text-lg text-[#5a5a5a] font-[lato]">
+                    Birth: ${petDetails?.date_of_birth ? new Date(petDetails.date_of_birth).getFullYear() : "N/A"}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/gender.png" alt="" />
+                  <p class="text-lg text-[#5a5a5a] font-[lato]">
+                    Gender: ${petDetails.gender ? petDetails.gender : 'N/A'}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/price.png" alt="" />
+                  <p class="text-lg text-[#5a5a5a] font-[lato]">
+                    Price: ${petDetails.price ? petDetails.price : 'N/A'}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <img src="./images/vacine.png" alt="" />
+                  <p class="text-lg text-[#5a5a5a] font-[lato]">
+                    Vaccinated status: ${petDetails.vaccinated_status ? petDetails.vaccinated_status : 'N/A'}
+                  </p>
+                </div>
+              </div>
+              <h3 class="font-semibold mt-6">Details Information</h3>
+              <div>
+                <p class="text-[#5a5a5a]">
+                ${petDetails.pet_details ? petDetails.pet_details : 'N/A'}
+                </p>
+                <ul class="list-disc list-inside pl-4">
+                  <li>
+                    The point of using is that it has a more-or-less normal
+                    distribution of letters, as opposed to using.
+                  </li>
+                </ul>
+                <div class="modal-action border-2l">
+                        <form method="dialog" class="inline-block w-full">
+                        <div>
+                        <button class="btn bg-[#e7f2f2] border-2 border-[#bcdadb] inline-block w-full  font-bold[#0E7A81]">Cancel</button>
+                        </div>
+
+                        </form>
+                  
+              </div>
+
+  `
+  document.getElementById('my_modal_5').showModal();
 }
 
 // like btn image display
@@ -137,10 +215,10 @@ const displayCategory = (categories) => {
     const btn = document.createElement('button');
     btn.classList = 'btn flex items-center gap-4 border-2 h-24 rounded-[16px] justify-center font-[inter]';
     btn.innerHTML = `
-             <img src="${categoryD.category_icon}" alt="" />
-            <p class="text-2xl font-bold">${categoryD.category}</p>
-           
-        `
+    <img src = "${categoryD.category_icon}" alt = "" />
+      <p class="text-2xl font-bold">${categoryD.category}</p>
+
+  `
     btn.onclick = function () {
       showCategoryPets(categoryD.category);
     };

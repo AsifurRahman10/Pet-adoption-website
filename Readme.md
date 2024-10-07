@@ -70,8 +70,8 @@ The following APIs are available in Peddy:
     - Buttons: "Like", "Adopt", and "Details"
   - If any field is missing from the API response, handle it by displaying a placeholder or meaningful message.✅
 - **Right Side**:
-  - Clicking the "Like" button should add the pet's thumbnail to the right-side grid.
-  - Display a 2-column layout for liked pet thumbnails.
+  - Clicking the "Like" button should add the pet's thumbnail to the right-side grid.✅
+  - Display a 2-column layout for liked pet thumbnails.✅
 
 ### 4. **Modal Window**
 
