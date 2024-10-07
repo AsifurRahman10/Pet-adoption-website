@@ -284,15 +284,16 @@ const displayCategory = (categories) => {
   });
 }
 
+// active btn
 const showCategoryPets = (petCategoryDisplay, clickedBtn) => {
   console.log(clickedBtn);
   const getAllButtons = document.querySelectorAll('#category-container button');
   getAllButtons.forEach(btn => {
-    btn.classList.remove("rounded-[120px]", "bg-[#e7f2f2]");
+    btn.classList.remove("rounded-[120px]", "bg-[#e7f2f2]", "border-2", "border-[#0e7a81]");
     btn.classList.add('rounded-[16px]');
   });
   clickedBtn.classList.remove('rounded-[16px]');
-  clickedBtn.classList.add("rounded-[120px]", "bg-[#e7f2f2]");
+  clickedBtn.classList.add("rounded-[120px]", "bg-[#e7f2f2]", "border-2", "border-[#0e7a81]");
 
   const petCardContainer = document.getElementById('pet-card-container');
   petCardContainer.innerHTML = "";

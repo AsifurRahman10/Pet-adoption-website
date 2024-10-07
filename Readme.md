@@ -17,3 +17,5 @@ Welcome to **Peddy**, your ultimate destination for pet adoption! Explore our us
 - **Template Strings**: For building dynamic strings with ease.
 - **Block-scoped Variables**: Using `let` and `const` for better variable management.
 - **Arrow Functions**: For concise function expressions.
+
+## Live Link - https://peddya6.netlify.app/
