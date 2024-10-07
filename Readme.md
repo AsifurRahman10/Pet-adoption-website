@@ -75,8 +75,8 @@ The following APIs are available in Peddy:
 
 ### 4. **Modal Window**
 
-- When the "Details" button is clicked, open a modal that displays all pet information like figma
-- The modal should close when the user clicks close button.
+- When the "Details" button is clicked, open a modal that displays all pet information like figma✅
+- The modal should close when the user clicks close button.✅
 
 ### 5. **Footer**
 
