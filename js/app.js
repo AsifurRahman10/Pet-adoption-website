@@ -22,7 +22,6 @@ const showCategoryWisePets = (petName) => {
     .then(data => {
       if (data.data.length > 0 && Array.isArray(data.data)) {
         displayPets(data.data);
-
       }
       else {
         noPetFound();
@@ -51,6 +50,19 @@ const noPetFound = () => {
 
 }
 
+
+
+document.getElementById('sortBtn').addEventListener('click', () => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
+    .then(res => res.json())
+    .then(data => {
+      const unSortData = data.pets;
+      const sorted = unSortData.sort((p1, p2) =>
+        (p1.price < p2.price) ? 1 : (p1.price > p2.price) ? -1 : 0
+      );
+      displayPets(sorted);
+    })
+})
 // display pets
 
 const displayPets = (pets) => {
